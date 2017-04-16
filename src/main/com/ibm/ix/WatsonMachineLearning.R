@@ -1,4 +1,4 @@
-# The base code for the Watson Machine Learning custom node.
+# TODO: Add comment
 # 
 # Author: baaron
 ###############################################################################
@@ -17,11 +17,13 @@ packages(httr)
 packages(xml2)
 #modelerData contains the original input data
 #modelerDataModel contains new data
+#url <- "https://ibm-watson-ml.mybluemix.net/pm/v1/score/mensSLAMS?accesskey=yRKLh9tacKkYJIQW9jGHcf3TD6sG2zypuz++AkRJZ8XE7rXhgI/90u33DG57oQBmHxGxQ3pIogjgEOjN0TGDTcL0h32gVzPkwMbmHXNpi+FQYUqQmv73SQJrb1WXWeZv"
 #assemble the content from the original data
 base <-"%%url%%" 
 context<-"%%context%%"
 token<-"%%token%% " 
 url <- paste(base,context ,'?accesskey=',token,sep='')
+#print(url)
 df <- modelerData
 header <- c()
 data <- c()
@@ -37,9 +39,12 @@ for(i in 1:nrow(df)){
 	content_list <- content(r)
 	header <- c()
 	data <- c()
-	results<-append(results,content_list[[1]]$data[[1]][[21]])
+	print(length(content_list[[1]]$data[[1]])-1)
+	results<-append(results,content_list[[1]]$data[[1]][[length(content_list[[1]]$data[[1]])]])
 }
 results<-data.frame(cbind(results))
+#print(results) 
 modelerData<-cbind(modelerData,results)
-X21<-c(fieldName="GAME_STYLE_ID",fieldLabel="",fieldStorage="string",fieldFormat="",fieldMeasure="",fieldRole="none")
+#print(modelerData)
+X21<-c(fieldName="%%output%%",fieldLabel="",fieldStorage="string",fieldFormat="",fieldMeasure="",fieldRole="none")
 modelerDataModel<-data.frame(modelerDataModel,X21)
