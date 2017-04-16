@@ -32,6 +32,7 @@ The following parameters must be included.
 - Watson ML URL: The base url to the Bluemix Watson Machine Learning service
 - Watson Token: The access token for the Bluemix Watson Machine Learning service
 - Watson Context: The model name or context
+- Model Output Name: The name of the output field
 
 ![parameters](./src/main/resources/parameters.png)
 
