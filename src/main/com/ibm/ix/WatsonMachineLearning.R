@@ -32,7 +32,12 @@ for(i in 1:nrow(df)){
 	row<-df[i,]
 	for(i in names(df)){
 		header<-append(header,i)
-		data<-append(data,toString(row[[i]]))
+		if (toString(row[[i]])=="NA"){
+			data<-append(data,NA)
+		}else{
+			data<-append(data,toString(row[[i]]))
+		}
+		
 	}
 	body = sprintf('{"tablename":"scoreInput","header":%s,"data":[%s]}',toJSON(header),toJSON(data))
 	r <- POST(url, body = body, encode="json",accept("application/json"),content_type("application/json"))
